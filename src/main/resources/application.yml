@@ -1,8 +1,6 @@
 spring:
   application:
-    name: AnalogAvito
-#  jackson:
-#    default-property-inclusion: non_null
+    name: PetAnalogAvito
   liquibase:
     enabled: false
     change-log:
