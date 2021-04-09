@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: AnalogAvito
+#  jackson:
+#    default-property-inclusion: non_null
+  liquibase:
+    enabled: false
+    change-log:
+    url:
+    user:
+    password:
+    database-change-log-table:
+    database-change-log-lock-table:
+    liquibase-schema:
+    default-schema:
+
