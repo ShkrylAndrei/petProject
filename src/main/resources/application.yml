@@ -1,15 +1,18 @@
 spring:
   application:
     name: PetAnalogAvito
+  datasource:
+    url: jdbc:postgresql://localhost:5432/DBPet
+    username: postgres
+    password: 1
+    driver-class-name: org.postgresql.Driver
   liquibase:
-    enabled: false
-    change-log:
-    url:
-    user:
-    password:
-    database-change-log-table:
-    database-change-log-lock-table:
-    liquibase-schema:
-    default-schema:
-
-//Use DBPet
+    enabled: true
+    change-log: classpath:/db/changelog/changelog-master.xml
+    url: jdbc:postgresql://localhost:5432/DBPet
+    user: postgres
+    password: 1
+    database-change-log-table: "DATABASE_CHANGE_LOG"
+    database-change-log-lock-table: "DATABASE_CHANGE_LOG_LOCK"
+    liquibase-schema: "liquibase"
+    default-schema: "public"
