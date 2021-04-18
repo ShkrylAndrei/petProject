@@ -16,3 +16,7 @@ spring:
     database-change-log-lock-table: "DATABASE_CHANGE_LOG_LOCK"
     liquibase-schema: "liquibase"
     default-schema: "public"
+
+logging:
+  level:
+    root: info
