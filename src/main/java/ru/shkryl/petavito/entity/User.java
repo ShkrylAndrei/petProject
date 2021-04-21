@@ -23,4 +23,16 @@ public class User {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator")
     private UUID id;
+
+    private String login;
+
+    private String password;
+
+    private String email;
+
+    public User(String login, String password, String email) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
+    }
 }
