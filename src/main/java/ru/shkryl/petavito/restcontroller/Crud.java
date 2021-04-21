@@ -5,12 +5,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import ru.shkryl.petavito.dto.ResponceCRUDDTO;
-import ru.shkryl.petavito.repository.UserRepository;
+import ru.shkryl.petavito.entity.Advertisment;
+import ru.shkryl.petavito.entity.User;
+import ru.shkryl.petavito.service.AdvertismentService;
 import ru.shkryl.petavito.service.UserService;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @RestController
 public class Crud {
@@ -19,28 +23,41 @@ public class Crud {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private AdvertismentService advertismentService;
 
     //TODO сделать через POST
     //TODO объявление передавать в теле запроса, оно может быть длинным
     //TODO и заголовок объявления тоже передавать в теле
     @GetMapping("/create")
     public ResponseEntity<ResponceCRUDDTO> create(@RequestParam(value = "shorttext", required = true) String shorttext,
-                         @RequestParam(value="type",required = true) Long type) {
+                                                  @RequestParam(value = "type", required = true) Long type) {
         LOGGER.debug("Поступил запрос на добавление объявления");
-        LOGGER.debug("Параметр shorttext = "+shorttext);
-        LOGGER.debug("Параметр type = "+type);
+        LOGGER.debug("Параметр shorttext = " + shorttext);
+        LOGGER.debug("Параметр type = " + type);
 
-        LocalDateTime datecreate;
+        //TODO поставить текущую дату
+        Date datecreate = null;
         ResponceCRUDDTO responceCRUDDTO = new ResponceCRUDDTO();
 
         //TODO переделать в UUID и чтобы брался извне
         //и сначала происходила проверка, авторизован ли пользователь
-        String userid = "1";
+        if (userService.checkLoginAndPasswordOfUser("Andrei", "1")) {
+            User user = userService.returnUserAfterAuthorithation("Andrei", "1");
+            //Создаем сущность объявление
+            Advertisment advertisment = new Advertisment(shorttext,
+                    null,
+                    "Продажа автомобилей",
+                    datecreate,
+                    user
+            );
+            //Сохраняем ее в базе
+            advertismentService.saveAdvertisment(advertisment);
+            //Если успешно то логируем успех, если неудача, то перехватываем adviceController
 
-        if (userService.checkLoginAndPasswordOfUser("Andrei","1")){
             responceCRUDDTO.message = "Объявление успешно добавлено в базу";
             LOGGER.debug("Объявление успешно добавлено в базу");
-        }else{
+        } else {
             responceCRUDDTO.message = "Вы не авторизованы, добавление невозможно";
             LOGGER.debug("Вы не авторизованы, добавление невозможно");
         }
