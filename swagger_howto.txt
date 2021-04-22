@@ -1,0 +1,7 @@
+https://coderlessons.com/tutorials/java-tekhnologii/learn-spring-boot/spring-boot-vkliuchenie-swagger2
+
+https://jazzteam.org/ru/technical-articles/setup-and-setting-swagger/
+
+Here the best desicion
+https://medium.com/bb-tutorials-and-thoughts/how-to-add-swagger-to-java-rest-api-5f6c155f831c
+
