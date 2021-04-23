@@ -5,10 +5,11 @@ import org.springframework.stereotype.Repository;
 import ru.shkryl.petavito.entity.User;
 
 import javax.transaction.Transactional;
+import java.util.UUID;
 
 @Repository
 @Transactional
-public interface UserRepository extends JpaRepository<User,String> {
+public interface UserRepository extends JpaRepository<User, UUID> {
     User findByLoginAndPassword(String login,String password);
 
 }

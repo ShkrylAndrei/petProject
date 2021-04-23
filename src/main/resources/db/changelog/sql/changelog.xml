@@ -9,4 +9,6 @@
     <include file="03_create_table_photo.sql" relativeToChangelogFile="true"/>
     <include file="04_relation_for_table_advertisment.sql" relativeToChangelogFile="true"/>
     <include file="05_relation_for_table_photo.sql" relativeToChangelogFile="true"/>
+<!--    <include file="06_insert_user.sql" relativeToChangelogFile="true"/>-->
+<!--    <include file="07_insert_advert.sql" relativeToChangelogFile="true"/>-->
 </databaseChangeLog>

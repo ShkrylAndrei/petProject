@@ -1,7 +1,6 @@
-package ru.shkryl.petavito.entity;
+package ru.shkryl.petavito.entityview;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,19 +11,12 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
+
 @Getter
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@Table(name = "userinfo")
-public class User {
-
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator")
+public class UserView {
     private UUID id;
 
     private String login;
@@ -33,10 +25,7 @@ public class User {
 
     private String email;
 
-    @OneToMany(mappedBy = "user")
-    private List<Advertisment> advertisment;
-
-    public User(String login, String password, String email) {
+    public UserView(String login, String password, String email) {
         this.login = login;
         this.password = password;
         this.email = email;

@@ -1,6 +1,6 @@
 package ru.shkryl.petavito.service;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Test;;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +11,13 @@ import ru.shkryl.petavito.PetavitoApplication;
 import ru.shkryl.petavito.entity.User;
 import ru.shkryl.petavito.repository.UserRepository;
 
-import static java.util.Optional.ofNullable;
-import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = PetavitoApplication.class)
-class UserServiceTest {
+class UserViewServiceTest {
 
     @MockBean
     private UserRepository userRepository;
@@ -38,11 +35,11 @@ class UserServiceTest {
 
         when(userRepository.findByLoginAndPassword(login, password)).
                 thenReturn(legalUser);
-        boolean actualResult = userService.checkLoginAndPasswordOfUser(login,password);
+        boolean actualResult = userService.checkLoginAndPasswordOfUser(login, password);
 
-        verify(userService).checkLoginAndPasswordOfUser(login,password);
-        verify(userRepository).findByLoginAndPassword(login,password);
+        verify(userService).checkLoginAndPasswordOfUser(login, password);
+        verify(userRepository).findByLoginAndPassword(login, password);
 
-        assertEquals(true,actualResult);
+        assertEquals(true, actualResult);
     }
 }

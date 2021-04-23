@@ -1,8 +1,12 @@
 package ru.shkryl.petavito.service;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import ru.shkryl.petavito.entity.User;
 import ru.shkryl.petavito.repository.UserRepository;
+
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -12,6 +16,12 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
+    public User getById(UUID id){
+        return userRepository.findById(id)
+                .orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
 
     public boolean checkLoginAndPasswordOfUser(String login, String password) {
         User user = userRepository.findByLoginAndPassword(login, password);

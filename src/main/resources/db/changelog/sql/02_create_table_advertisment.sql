@@ -5,7 +5,7 @@ CREATE TABLE public.advertisment
     shorttext character varying(300) NOT NULL,
     longtext text,
     type character varying(100) NOT NULL,
-    datecreate date NOT NULL,
+    datecreate timestamp,
     userid UUID NOT NULL,
     PRIMARY KEY (id)
 );

@@ -6,8 +6,9 @@ import ru.shkryl.petavito.entity.Advertisment;
 import ru.shkryl.petavito.entity.User;
 
 import javax.transaction.Transactional;
+import java.util.UUID;
 
 @Repository
 @Transactional
-public interface AdvertismentRepository extends JpaRepository<Advertisment,String> {
+public interface AdvertismentRepository extends JpaRepository<Advertisment, UUID> {
 }

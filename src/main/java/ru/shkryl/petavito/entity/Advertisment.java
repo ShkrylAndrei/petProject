@@ -1,10 +1,9 @@
 package ru.shkryl.petavito.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import ru.shkryl.petavito.entityview.AdvertismentView;
 
 import javax.persistence.*;
 import java.time.DateTimeException;
@@ -16,9 +15,9 @@ import java.util.UUID;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "advertisment")
 public class Advertisment {
-
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -35,7 +34,7 @@ public class Advertisment {
     private Date datecreate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "userid")
     private User user;
 
     public Advertisment(String shorttext, String longtext, String type, Date datecreate, User user) {
@@ -45,4 +44,6 @@ public class Advertisment {
         this.datecreate = datecreate;
         this.user = user;
     }
+
+
 }
