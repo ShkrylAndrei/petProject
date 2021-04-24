@@ -1,0 +1,3 @@
+https://coderlessons.com/articles/java/spring-boot-s-bazoi-dannykh-h2
+
+https://betacode.net/11893/integrating-spring-boot-jpa-and-h2-database
