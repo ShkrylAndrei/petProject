@@ -10,9 +10,6 @@ public class PetavitoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(PetavitoApplication.class, args);
-//		System.out.println(UUID.randomUUID());
-//		System.out.println(UUID.randomUUID());
-//		System.out.println(UUID.randomUUID());
 	}
 
 }
