@@ -3,10 +3,15 @@ package ru.shkryl.petavito.service;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import ru.shkryl.petavito.entity.Advertisment;
 import ru.shkryl.petavito.entity.User;
+import ru.shkryl.petavito.entityview.AdvertismentView;
+import ru.shkryl.petavito.entityview.UserView;
 import ru.shkryl.petavito.repository.UserRepository;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -15,6 +20,13 @@ public class UserService {
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+    }
+
+    public List<UserView> findAll() {
+        List<User> list = userRepository.findAll();
+        return list.stream()
+                .map(usr -> new UserView(usr))
+                .collect(Collectors.toList());
     }
 
     public User getById(UUID id){

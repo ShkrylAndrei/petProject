@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import ru.shkryl.petavito.entity.User;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,5 +30,11 @@ public class UserView {
         this.login = login;
         this.password = password;
         this.email = email;
+    }
+
+    public UserView(User usr) {
+        this.login=usr.getLogin();
+        this.password=usr.getPassword();
+        this.email=usr.getEmail();
     }
 }
