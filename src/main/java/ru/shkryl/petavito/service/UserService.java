@@ -52,4 +52,20 @@ public class UserService {
 
         return user;
     }
+
+    public UserView findById(UUID id) {
+        User usr = userRepository
+                .findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return new UserView(usr);
+    }
+
+    public UserView save(UserView userView) {
+        User usr = userView.convertToUser(userView);
+        usr = userRepository.save(usr);
+        return new UserView(usr);
+    }
+
+    public void deleteById(UUID id) {
+        userRepository.deleteById(id);
+    }
 }

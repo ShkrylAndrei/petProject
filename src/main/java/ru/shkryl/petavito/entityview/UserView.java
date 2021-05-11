@@ -5,11 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 import ru.shkryl.petavito.entity.User;
 
-import javax.persistence.*;
-import java.util.List;
 import java.util.UUID;
 
 
@@ -33,8 +30,14 @@ public class UserView {
     }
 
     public UserView(User usr) {
-        this.login=usr.getLogin();
-        this.password=usr.getPassword();
-        this.email=usr.getEmail();
+        this.login = usr.getLogin();
+        this.password = usr.getPassword();
+        this.email = usr.getEmail();
+    }
+
+    public User convertToUser(UserView userView) {
+        return new User(userView.getLogin(),
+                userView.getPassword(),
+                userView.getEmail());
     }
 }

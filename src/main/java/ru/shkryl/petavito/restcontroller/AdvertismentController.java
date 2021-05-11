@@ -6,14 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.shkryl.petavito.dto.ResponceCRUDDTO;
-import ru.shkryl.petavito.entity.Advertisment;
-import ru.shkryl.petavito.entity.User;
 import ru.shkryl.petavito.entityview.AdvertismentView;
 import ru.shkryl.petavito.service.AdvertismentService;
 import ru.shkryl.petavito.service.UserService;
 
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -33,24 +29,24 @@ public class AdvertismentController {
 
 
     @GetMapping
-    public List<AdvertismentView> getAll(){
-         return advertismentService.findAll();
+    public List<AdvertismentView> getAll() {
+        return advertismentService.findAll();
     }
 
     @GetMapping("{id}")
-    public AdvertismentView get(@PathVariable String id){
-         return advertismentService.findById(UUID.fromString(id));
+    public AdvertismentView get(@PathVariable String id) {
+        return advertismentService.findById(UUID.fromString(id));
     }
 
     @PostMapping()
-    public ResponseEntity<AdvertismentView> create(@RequestBody AdvertismentView advertismentView){
+    public ResponseEntity<AdvertismentView> create(@RequestBody AdvertismentView advertismentView) {
         AdvertismentView adv = advertismentService.save(advertismentView);
         return new ResponseEntity<>(adv, HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
     public AdvertismentView update(@PathVariable String id,
-                                                   @RequestBody AdvertismentView advertismentView){
+                                   @RequestBody AdvertismentView advertismentView) {
         AdvertismentView byId = advertismentService.findById(UUID.fromString(id));
         byId.setShorttext(advertismentView.getShorttext());
         byId.setLongtext(advertismentView.getLongtext());
@@ -60,10 +56,8 @@ public class AdvertismentController {
         return byId;
     }
 
-
-
     @DeleteMapping("{id}")
-    public ResponseEntity delete(@PathVariable String id){
+    public ResponseEntity delete(@PathVariable String id) {
         advertismentService.deleteById(UUID.fromString(id));
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
