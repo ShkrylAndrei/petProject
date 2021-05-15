@@ -1,0 +1,3 @@
+https://www.tutorialspoint.com/java/java_sending_email.htm
+
+https://stackoverflow.com/questions/15597616/sending-email-via-gmail-smtp-server-in-java

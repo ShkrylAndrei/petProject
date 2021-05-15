@@ -7,7 +7,9 @@ import ru.shkryl.petavito.entityview.AdvertismentView;
 
 import javax.persistence.*;
 import java.time.DateTimeException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -36,6 +38,11 @@ public class Advertisment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userid")
     private User user;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Subscribe> subscribeList = new ArrayList<>();
+
+
 
     public Advertisment(String shorttext, String longtext, String type, Date datecreate, User user) {
         this.shorttext = shorttext;

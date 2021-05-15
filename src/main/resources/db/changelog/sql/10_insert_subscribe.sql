@@ -1,0 +1,3 @@
+INSERT INTO SUBSCRIBE (id, advertismentid) VALUES ('63c61ead-e9c4-404d-898e-8eed522612a1','63c61ead-e9c4-404d-898e-8eed522612f4');
+INSERT INTO SUBSCRIBE (id, advertismentid) VALUES ('63c61ead-e9c4-404d-898e-8eed522612a2','b301526f-98f4-4ccc-920d-260cd20521e7');
+

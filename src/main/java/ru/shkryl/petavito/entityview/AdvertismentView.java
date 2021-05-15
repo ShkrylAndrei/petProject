@@ -45,6 +45,6 @@ public class AdvertismentView {
                 getLongtext(),
                 getType(),
                 getDatecreate(),
-                user);
+                user, null);
     }
 }
