@@ -35,11 +35,12 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "user")
-    private List<Advertisment> advertisment;
+    private List<Advertisment> advertisment;//advertisement правильно
 
     @ManyToMany(mappedBy = "userList")
-    private List<Subscribe> subscribeList = new ArrayList<>();
+    private List<Subscribe> subscribeList = new ArrayList<>();//ArrayList убрать
 
+    //Конструктор убрать
     public User(String login, String password, String email) {
         this.login = login;
         this.password = password;

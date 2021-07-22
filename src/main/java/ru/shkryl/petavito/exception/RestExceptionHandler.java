@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import ru.shkryl.petavito.dto.error.ErrorDTO;
 
+//В эттом пакете должны быть только експешн
+//Это перенести в пакет контроллер, создать отдельный пакет
 @ControllerAdvice
 class RestExceptionHandler {
 

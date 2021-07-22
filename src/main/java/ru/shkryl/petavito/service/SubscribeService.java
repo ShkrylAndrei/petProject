@@ -15,6 +15,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+//Lombok
 public class SubscribeService {
 
     private final AdvertismentService advertismentService;

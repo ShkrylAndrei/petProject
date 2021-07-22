@@ -13,10 +13,12 @@ import ru.shkryl.petavito.service.UserService;
 import java.util.List;
 import java.util.UUID;
 
+//конструктор Lombok
 @RestController
 @RequestMapping(value = "/advert", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdvertismentController {
 
+    //Логер зачем, используем SLF4j
     private final Logger LOGGER = LoggerFactory.getLogger(AdvertismentController.class);
 
     private final UserService userService;
@@ -27,7 +29,7 @@ public class AdvertismentController {
         this.advertismentService = advertismentService;
     }
 
-
+    //Лучше сущности в DTO маппить здесь, использовать ковертер через ORIKA
     @GetMapping
     public List<AdvertismentView> getAll() {
         return advertismentService.findAll();
@@ -56,6 +58,7 @@ public class AdvertismentController {
         return byId;
     }
 
+    //ResponceEntitty параметризировать
     @DeleteMapping("{id}")
     public ResponseEntity delete(@PathVariable String id) {
         advertismentService.deleteById(UUID.fromString(id));

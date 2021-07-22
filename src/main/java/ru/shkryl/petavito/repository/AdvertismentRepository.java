@@ -9,6 +9,6 @@ import javax.transaction.Transactional;
 import java.util.UUID;
 
 @Repository
-@Transactional
+@Transactional//Для чего повесил @Transactional уметь объяснить, может CRUD использовать репозиторий
 public interface AdvertismentRepository extends JpaRepository<Advertisment, UUID> {
 }

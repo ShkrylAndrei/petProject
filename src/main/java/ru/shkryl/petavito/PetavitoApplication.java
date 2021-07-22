@@ -13,3 +13,7 @@ public class PetavitoApplication {
 	}
 
 }
+
+//Spring Security
+//Validation в DTO
+//И запросы в репозитории поинтересней, нативные запросы и JPQL можно CRITERIAAPI
