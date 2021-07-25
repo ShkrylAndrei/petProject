@@ -1,12 +1,9 @@
 package ru.shkryl.petavito.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-import ru.shkryl.petavito.entityview.AdvertismentView;
 
 import javax.persistence.*;
-import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

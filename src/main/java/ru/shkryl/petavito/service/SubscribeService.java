@@ -3,11 +3,8 @@ package ru.shkryl.petavito.service;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import ru.shkryl.petavito.entity.Advertisment;
 import ru.shkryl.petavito.entity.Subscribe;
-import ru.shkryl.petavito.entity.User;
-import ru.shkryl.petavito.entityview.AdvertismentView;
-import ru.shkryl.petavito.entityview.SubscribeView;
+import ru.shkryl.petavito.entitydto.SubscribeDto;
 import ru.shkryl.petavito.repository.SubscribeRepository;
 
 import java.util.List;
@@ -30,17 +27,17 @@ public class SubscribeService {
     }
 
 
-    public List<SubscribeView> findAll() {
+    public List<SubscribeDto> findAll() {
         List<Subscribe> list = subscribeRepository.findAll();
         return list.stream()
-                .map(subs -> new SubscribeView(subs))
+                .map(subs -> new SubscribeDto(subs))
                 .collect(Collectors.toList());
     }
 
-    public SubscribeView findById(UUID id) {
+    public SubscribeDto findById(UUID id) {
         Subscribe subs = subscribeRepository
                 .findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return new SubscribeView(subs);
+        return new SubscribeDto(subs);
     }
 
 //    public SubscribeView save(SubscribeView subscribeView) {

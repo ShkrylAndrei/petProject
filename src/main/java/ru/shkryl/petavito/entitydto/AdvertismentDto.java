@@ -1,11 +1,9 @@
-package ru.shkryl.petavito.entityview;
+package ru.shkryl.petavito.entitydto;
 
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 import ru.shkryl.petavito.entity.Advertisment;
 import ru.shkryl.petavito.entity.User;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
@@ -15,7 +13,7 @@ import java.util.UUID;
 @EqualsAndHashCode
 @NoArgsConstructor
 
-public class AdvertismentView {
+public class AdvertismentDto {
 
     private UUID id;
 
@@ -30,7 +28,7 @@ public class AdvertismentView {
 
     private UUID userId;
 
-    public AdvertismentView(Advertisment advertisment) {
+    public AdvertismentDto(Advertisment advertisment) {
         this.id = advertisment.getId();
         this.shorttext = advertisment.getShorttext();
         this.longtext = advertisment.getLongtext();

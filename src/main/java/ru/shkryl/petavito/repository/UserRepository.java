@@ -11,5 +11,6 @@ import java.util.UUID;
 @Transactional
 public interface UserRepository extends JpaRepository<User, UUID> {
     User findByLoginAndPassword(String login,String password);
+    User findByLogin(String login);
 
 }

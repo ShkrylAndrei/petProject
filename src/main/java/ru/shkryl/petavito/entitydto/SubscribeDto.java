@@ -1,15 +1,12 @@
-package ru.shkryl.petavito.entityview;
+package ru.shkryl.petavito.entitydto;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.shkryl.petavito.entity.Advertisment;
 import ru.shkryl.petavito.entity.Subscribe;
-import ru.shkryl.petavito.entity.User;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +16,7 @@ import java.util.UUID;
 @EqualsAndHashCode
 @NoArgsConstructor
 
-public class SubscribeView {
+public class SubscribeDto {
 
     private UUID id;
 
@@ -27,7 +24,7 @@ public class SubscribeView {
 
     private List<UUID> userList = new ArrayList<>();
 
-    public SubscribeView(Subscribe subscribe) {
+    public SubscribeDto(Subscribe subscribe) {
         this.id = subscribe.getId();
         this.advertismentId = subscribe.getAdvertisment().getId();
         subscribe.getUserList().stream()

@@ -6,8 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.shkryl.petavito.entityview.AdvertismentView;
-import ru.shkryl.petavito.entityview.SubscribeView;
+import ru.shkryl.petavito.entitydto.SubscribeDto;
 import ru.shkryl.petavito.service.AdvertismentService;
 import ru.shkryl.petavito.service.SubscribeService;
 import ru.shkryl.petavito.service.UserService;
@@ -33,12 +32,12 @@ public class SubscribeController {
 
 
     @GetMapping
-    public List<SubscribeView> getAll() {
+    public List<SubscribeDto> getAll() {
         return subscribeService.findAll();
     }
 
     @GetMapping("{id}")
-    public SubscribeView get(@PathVariable String id) {
+    public SubscribeDto get(@PathVariable String id) {
         return subscribeService.findById(UUID.fromString(id));
     }
 

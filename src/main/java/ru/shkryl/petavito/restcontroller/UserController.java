@@ -6,8 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.shkryl.petavito.entityview.AdvertismentView;
-import ru.shkryl.petavito.entityview.UserView;
+import ru.shkryl.petavito.entitydto.UserDto;
 import ru.shkryl.petavito.service.UserService;
 
 import java.util.List;
@@ -26,28 +25,28 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserView> getAll(){
+    public List<UserDto> getAll(){
         return userService.findAll();
     }
 
     @GetMapping("{id}")
-    public UserView get(@PathVariable String id){
+    public UserDto get(@PathVariable String id){
         return userService.findById(UUID.fromString(id));
     }
 
     @PostMapping()
-    public ResponseEntity<UserView> create(@RequestBody UserView userView){
-        UserView usr = userService.save(userView);
+    public ResponseEntity<UserDto> create(@RequestBody UserDto userDto){
+        UserDto usr = userService.save(userDto);
         return new ResponseEntity<>(usr, HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
-    public UserView update(@PathVariable String id,
-                                   @RequestBody UserView userView){
-        UserView byId = userService.findById(UUID.fromString(id));
-        byId.setLogin(userView.getLogin());
-        byId.setPassword(userView.getPassword());
-        byId.setEmail(userView.getEmail());
+    public UserDto update(@PathVariable String id,
+                          @RequestBody UserDto userDto){
+        UserDto byId = userService.findById(UUID.fromString(id));
+        byId.setLogin(userDto.getLogin());
+        byId.setPassword(userDto.getPassword());
+        byId.setEmail(userDto.getEmail());
         userService.save(byId);
         return byId;
     }

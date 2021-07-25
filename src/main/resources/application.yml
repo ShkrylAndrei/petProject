@@ -7,7 +7,7 @@ spring:
     password: 1
     driver-class-name: org.postgresql.Driver
   liquibase:
-    enabled: true
+    enabled: false
     change-log: classpath:/db/changelog/changelog-master.xml
     url: jdbc:postgresql://localhost:5432/DBPet
     user: postgres

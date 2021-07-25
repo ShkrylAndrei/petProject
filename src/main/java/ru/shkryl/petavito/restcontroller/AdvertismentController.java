@@ -6,12 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.shkryl.petavito.entityview.AdvertismentView;
+import ru.shkryl.petavito.entitydto.AdvertismentDto;
 import ru.shkryl.petavito.service.AdvertismentService;
 import ru.shkryl.petavito.service.UserService;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 //конструктор Lombok
 @RestController
@@ -30,30 +31,32 @@ public class AdvertismentController {
     }
 
     //Лучше сущности в DTO маппить здесь, использовать ковертер через ORIKA
-    @GetMapping
-    public List<AdvertismentView> getAll() {
-        return advertismentService.findAll();
+    @GetMapping()
+    public List<AdvertismentDto> getAll() {
+        return advertismentService.findAll()
+                .map(adv -> new AdvertismentDto(adv))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("{id}")
-    public AdvertismentView get(@PathVariable String id) {
+    public AdvertismentDto get(@PathVariable String id) {
         return advertismentService.findById(UUID.fromString(id));
     }
 
     @PostMapping()
-    public ResponseEntity<AdvertismentView> create(@RequestBody AdvertismentView advertismentView) {
-        AdvertismentView adv = advertismentService.save(advertismentView);
+    public ResponseEntity<AdvertismentDto> create(@RequestBody AdvertismentDto advertismentDto) {
+        AdvertismentDto adv = advertismentService.save(advertismentDto);
         return new ResponseEntity<>(adv, HttpStatus.CREATED);
     }
 
     @PutMapping("{id}")
-    public AdvertismentView update(@PathVariable String id,
-                                   @RequestBody AdvertismentView advertismentView) {
-        AdvertismentView byId = advertismentService.findById(UUID.fromString(id));
-        byId.setShorttext(advertismentView.getShorttext());
-        byId.setLongtext(advertismentView.getLongtext());
-        byId.setDatecreate(advertismentView.getDatecreate());
-        byId.setType(advertismentView.getType());
+    public AdvertismentDto update(@PathVariable String id,
+                                  @RequestBody AdvertismentDto advertismentDto) {
+        AdvertismentDto byId = advertismentService.findById(UUID.fromString(id));
+        byId.setShorttext(advertismentDto.getShorttext());
+        byId.setLongtext(advertismentDto.getLongtext());
+        byId.setDatecreate(advertismentDto.getDatecreate());
+        byId.setType(advertismentDto.getType());
         advertismentService.save(byId);
         return byId;
     }

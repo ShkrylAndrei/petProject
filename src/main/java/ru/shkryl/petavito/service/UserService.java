@@ -3,10 +3,8 @@ package ru.shkryl.petavito.service;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import ru.shkryl.petavito.entity.Advertisment;
 import ru.shkryl.petavito.entity.User;
-import ru.shkryl.petavito.entityview.AdvertismentView;
-import ru.shkryl.petavito.entityview.UserView;
+import ru.shkryl.petavito.entitydto.UserDto;
 import ru.shkryl.petavito.repository.UserRepository;
 
 import java.util.List;
@@ -22,10 +20,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<UserView> findAll() {
+    public List<UserDto> findAll() {
         List<User> list = userRepository.findAll();
         return list.stream()
-                .map(usr -> new UserView(usr))
+                .map(usr -> new UserDto(usr))
                 .collect(Collectors.toList());
     }
 
@@ -53,16 +51,16 @@ public class UserService {
         return user;
     }
 
-    public UserView findById(UUID id) {
+    public UserDto findById(UUID id) {
         User usr = userRepository
                 .findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return new UserView(usr);
+        return new UserDto(usr);
     }
 
-    public UserView save(UserView userView) {
-        User usr = userView.convertToUser(userView);
+    public UserDto save(UserDto userDto) {
+        User usr = userDto.convertToUser(userDto);
         usr = userRepository.save(usr);
-        return new UserView(usr);
+        return new UserDto(usr);
     }
 
     public void deleteById(UUID id) {

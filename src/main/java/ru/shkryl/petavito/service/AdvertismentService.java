@@ -1,17 +1,15 @@
 package ru.shkryl.petavito.service;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ru.shkryl.petavito.entity.Advertisment;
 import ru.shkryl.petavito.entity.User;
-import ru.shkryl.petavito.entityview.AdvertismentView;
+import ru.shkryl.petavito.entitydto.AdvertismentDto;
 import ru.shkryl.petavito.repository.AdvertismentRepository;
 
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 //вместо конструктора использовать Lombok RequiredConstruct
@@ -30,11 +28,10 @@ public class AdvertismentService {
     //нужно ли возращать stream если я не буду его маппить, рефактор
     //findAll должен вернуть stream и должна быть ленивая загрузка
     //
-    public List<AdvertismentView> findAll() {
-        List<Advertisment> list = advertismentRepository.findAll();
-        return list.stream()
-                .map(adv -> new AdvertismentView(adv))
-                .collect(Collectors.toList());
+    public Stream<Advertisment> findAll() {
+        return advertismentRepository.findAll()
+                .stream();
+
     }
 
     //не нужно findById метод называть, назвать его find
@@ -42,18 +39,19 @@ public class AdvertismentService {
     //AdvertismentView в DTO
     //ассоциируется что View передается в контроллер подумать над названием и логикой
     //с DTO должен работать только контроллер, сервис не должен
-    public AdvertismentView findById(UUID id) {
+
+    public AdvertismentDto findById(UUID id) {
         Advertisment adv = advertismentRepository
                 .findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return new AdvertismentView(adv);
+        return new AdvertismentDto(adv);
     }
 
     //View переименовать в DTO, перетащить в пакет DTO
-    public AdvertismentView save(AdvertismentView advertismentView) {
-        User user = userService.getById(advertismentView.getUserId());
-        Advertisment adv = advertismentView.convertToAdvertisment(user);
+    public AdvertismentDto save(AdvertismentDto advertismentDto) {
+        User user = userService.getById(advertismentDto.getUserId());
+        Advertisment adv = advertismentDto.convertToAdvertisment(user);
         adv = advertismentRepository.save(adv);
-        return new AdvertismentView(adv);
+        return new AdvertismentDto(adv);
     }
 
     public void deleteById(UUID id){

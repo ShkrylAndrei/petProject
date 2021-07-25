@@ -1,4 +1,4 @@
-package ru.shkryl.petavito.entityview;
+package ru.shkryl.petavito.entitydto;
 
 
 import lombok.EqualsAndHashCode;
@@ -14,7 +14,7 @@ import java.util.UUID;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-public class UserView {
+public class UserDto {
     private UUID id;
 
     private String login;
@@ -23,21 +23,26 @@ public class UserView {
 
     private String email;
 
-    public UserView(String login, String password, String email) {
+    private String role;
+
+    public UserDto(String login, String password, String email, String role) {
         this.login = login;
         this.password = password;
         this.email = email;
+        this.role = role;
     }
 
-    public UserView(User usr) {
+    public UserDto(User usr) {
         this.login = usr.getLogin();
         this.password = usr.getPassword();
         this.email = usr.getEmail();
+        this.role = usr.getRole();
     }
 
-    public User convertToUser(UserView userView) {
-        return new User(userView.getLogin(),
-                userView.getPassword(),
-                userView.getEmail());
+    public User convertToUser(UserDto userDto) {
+        return new User(userDto.getLogin(),
+                userDto.getPassword(),
+                userDto.getEmail(),
+                userDto.getRole());
     }
 }

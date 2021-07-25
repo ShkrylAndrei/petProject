@@ -34,6 +34,8 @@ public class User {
 
     private String email;
 
+    private String role;
+
     @OneToMany(mappedBy = "user")
     private List<Advertisment> advertisment;//advertisement правильно
 
@@ -41,9 +43,10 @@ public class User {
     private List<Subscribe> subscribeList = new ArrayList<>();//ArrayList убрать
 
     //Конструктор убрать
-    public User(String login, String password, String email) {
+    public User(String login, String password, String email, String role) {
         this.login = login;
         this.password = password;
         this.email = email;
+        this.role = role;
     }
 }

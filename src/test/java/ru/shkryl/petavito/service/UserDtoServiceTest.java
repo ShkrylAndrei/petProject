@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = PetavitoApplication.class)
-class UserViewServiceTest {
+class UserDtoServiceTest {
 
     @MockBean
     private UserRepository userRepository;
@@ -31,7 +31,7 @@ class UserViewServiceTest {
         String login = "Andrei";
         String password = "1";
 
-        User legalUser = new User("Andrei", "1", "ShkrylAndrei@mail.ru");
+        User legalUser = new User("Andrei", "1", "ShkrylAndrei@mail.ru","USER");
 
         when(userRepository.findByLoginAndPassword(login, password)).
                 thenReturn(legalUser);
