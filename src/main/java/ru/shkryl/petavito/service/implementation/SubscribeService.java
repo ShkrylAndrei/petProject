@@ -1,4 +1,4 @@
-package ru.shkryl.petavito.service;
+package ru.shkryl.petavito.service.implementation;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 //Lombok
 public class SubscribeService {
 
-    private final AdvertismentService advertismentService;
+    private final AdvertismentServiceImpl advertismentService;
     private final SubscribeRepository subscribeRepository;
 
     private final UserService userService;
 
-    public SubscribeService(AdvertismentService advertismentService, SubscribeRepository subscribeRepository, UserService userService) {
+    public SubscribeService(AdvertismentServiceImpl advertismentService, SubscribeRepository subscribeRepository, UserService userService) {
         this.advertismentService = advertismentService;
         this.subscribeRepository = subscribeRepository;
         this.userService = userService;

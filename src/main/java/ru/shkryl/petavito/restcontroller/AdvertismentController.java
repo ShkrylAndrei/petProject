@@ -7,8 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.shkryl.petavito.entitydto.AdvertismentDto;
-import ru.shkryl.petavito.service.AdvertismentService;
-import ru.shkryl.petavito.service.UserService;
+import ru.shkryl.petavito.service.implementation.AdvertismentServiceImpl;
+import ru.shkryl.petavito.service.implementation.UserService;
 
 import java.util.List;
 import java.util.UUID;
@@ -23,9 +23,9 @@ public class AdvertismentController {
     private final Logger LOGGER = LoggerFactory.getLogger(AdvertismentController.class);
 
     private final UserService userService;
-    private final AdvertismentService advertismentService;
+    private final AdvertismentServiceImpl advertismentService;
 
-    public AdvertismentController(UserService userService, AdvertismentService advertismentService) {
+    public AdvertismentController(UserService userService, AdvertismentServiceImpl advertismentService) {
         this.userService = userService;
         this.advertismentService = advertismentService;
     }

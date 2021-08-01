@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.shkryl.petavito.entitydto.UserDto;
-import ru.shkryl.petavito.service.UserService;
+import ru.shkryl.petavito.service.implementation.UserService;
 
 import java.util.List;
 import java.util.UUID;

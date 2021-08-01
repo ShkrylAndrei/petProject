@@ -7,9 +7,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.shkryl.petavito.entitydto.SubscribeDto;
-import ru.shkryl.petavito.service.AdvertismentService;
-import ru.shkryl.petavito.service.SubscribeService;
-import ru.shkryl.petavito.service.UserService;
+import ru.shkryl.petavito.service.implementation.AdvertismentServiceImpl;
+import ru.shkryl.petavito.service.implementation.SubscribeService;
+import ru.shkryl.petavito.service.implementation.UserService;
 
 import java.util.List;
 import java.util.UUID;
@@ -21,10 +21,10 @@ public class SubscribeController {
     private final Logger LOGGER = LoggerFactory.getLogger(SubscribeController.class);
 
     private final UserService userService;
-    private final AdvertismentService advertismentService;
+    private final AdvertismentServiceImpl advertismentService;
     private final SubscribeService subscribeService;
 
-    public SubscribeController(UserService userService, AdvertismentService advertismentService, SubscribeService subscribeService) {
+    public SubscribeController(UserService userService, AdvertismentServiceImpl advertismentService, SubscribeService subscribeService) {
         this.userService = userService;
         this.advertismentService = advertismentService;
         this.subscribeService = subscribeService;

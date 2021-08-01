@@ -13,4 +13,6 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     User findByLoginAndPassword(String login,String password);
     User findByLogin(String login);
 
+    //Выбрать в JQPL все электронные адреса
+
 }

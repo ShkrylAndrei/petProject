@@ -1,4 +1,4 @@
-package ru.shkryl.petavito.service;
+package ru.shkryl.petavito.service.implementation;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
