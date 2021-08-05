@@ -6,6 +6,7 @@ import org.springframework.web.server.ResponseStatusException;
 import ru.shkryl.petavito.entity.Advertisment;
 import ru.shkryl.petavito.entity.User;
 import ru.shkryl.petavito.entitydto.AdvertismentDto;
+import ru.shkryl.petavito.mapper.AdvertismentMapper;
 import ru.shkryl.petavito.repository.AdvertismentRepository;
 import ru.shkryl.petavito.service.AdvertismentService;
 
@@ -19,10 +20,12 @@ public class AdvertismentServiceImpl implements AdvertismentService {
 
     private final AdvertismentRepository advertismentRepository;
     private final UserService userService;
+    private final AdvertismentMapper advertismentMapper;
 
-    public AdvertismentServiceImpl(AdvertismentRepository advertismentRepository, UserService userService) {
+    public AdvertismentServiceImpl(AdvertismentRepository advertismentRepository, UserService userService, AdvertismentMapper advertismentMapper) {
         this.advertismentRepository = advertismentRepository;
         this.userService = userService;
+        this.advertismentMapper = advertismentMapper;
     }
 
     //Это не правильно, List<Advertisment> лишняя, можно просто вызвать findall и вернуть stream.
@@ -44,7 +47,13 @@ public class AdvertismentServiceImpl implements AdvertismentService {
     public AdvertismentDto findById(UUID id) {
         Advertisment adv = advertismentRepository
                 .findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return new AdvertismentDto(adv);
+
+        AdvertismentDto advertismentDto = new AdvertismentDto();
+        advertismentMapper.map(adv,advertismentDto);
+        return  advertismentDto;
+
+        //        return new AdvertismentDto(adv);
+
     }
 
     //View переименовать в DTO, перетащить в пакет DTO
