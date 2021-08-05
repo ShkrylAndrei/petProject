@@ -7,18 +7,15 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ru.shkryl.petavito.entity.Advertisment;
 import ru.shkryl.petavito.entitydto.AdvertismentDto;
-import ru.shkryl.petavito.mapper.AdvertismentMapper;
 import ru.shkryl.petavito.service.implementation.AdvertismentServiceImpl;
 import ru.shkryl.petavito.service.implementation.UserService;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
+import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 //конструктор Lombok
 @RestController
@@ -54,7 +51,10 @@ public class AdvertismentController {
 
     @GetMapping("{id}")
     //public AdvertismentDto get(@PathVariable @Valid @Max(2) String id) {
-    public AdvertismentDto get(@PathVariable String id) {
+    public AdvertismentDto get(@PathVariable
+                               @Valid
+                               @Pattern(regexp = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", message = "must be of 6 char/digit")
+                                       String id) {
         return advertismentService.findById(UUID.fromString(id));
     }
 
